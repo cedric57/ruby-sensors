@@ -1,6 +1,8 @@
 #! /usr/bin/env ruby
 require 'sensors'
-require 'ap'
+require 'awesome_print'
+
+puts "libsensor version: #{Sensors.version}"
 
 ap Hash[Sensors.chips.map {|chip|
   [chip.name, Hash[chip.features.map {|feature|
