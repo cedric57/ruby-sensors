@@ -28,7 +28,7 @@
 
 module Sensors; module C
 
-# :string, :libsensors_version # TODO: look how to get an extern var
+attach_variable :libsensors_version, :libsensors_version, :string
 
 BusType = FFI::Enum.new([
   :any, -1,
