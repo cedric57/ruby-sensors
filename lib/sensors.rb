@@ -39,13 +39,18 @@ module Sensors
   def self.chips (match=nil)
     Enumerator.new do |e|
       number = FFI::MemoryPointer.new :int
-      match  = Chip.new(match.to_s) if match
+      match  = Chip.new(match.to_s).to_ffi if match
 
-      until (chip = C::sensors_get_detected_chips(match.to_ffi, number)).null?
+      until (chip = C::sensors_get_detected_chips(match, number)).null?
         e << Chip.new(chip)
       end
     end
   end
+  
+  def self.version()
+    C::libsensors_version
+  end
+
 end
 
 Sensors.initialize
